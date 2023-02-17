@@ -97,17 +97,85 @@ while (count <= N)
 //782 -> 8
 //918 -> 1
 
-int result = 0;
+/*
+
 Console.Write("Введите трехзначное число: ");
-int value = Convert.ToInt32(Console.ReadLine());
-if (value < -999 && value > 999 || value > -99 && value < 99)
+int value = Math.Abs(Convert.ToInt32(Console.ReadLine()));  // модуль числа при отрицательных режет минус
+if (value > 999 || value < 99)
 {
     Console.Write("Введено не верное число!!!");
-    return;
 }
 else
 {
    result = value % 100;
    result = result /10;
-   Console.Write($"Второе число в введенном трехначном числе {value} - {result}");
+   Console.Write($"Второе число в введенном трехзначном числе {value} - {result}");
 }
+*/
+//Задача 13: Напишите программу, которая выводит третью цифру заданного 
+//семизначного числа или сообщает, что третьей цифры нет.
+//78 -> третьей цифры нет
+//3267900 -> 6
+//ДОП: цифра третья может быть как с левой стороны, так и с правой
+/*
+int result = 0;
+int countIndex = 1;
+Console.Write("Введите число: ");
+int value = Math.Abs(Convert.ToInt32(Console.ReadLine()));
+int RightValue = value; // для справа
+int count = value;
+
+while (count >= 10)
+{
+    count = count / 10;
+    countIndex++;
+}
+if (countIndex > 7)
+{
+    Console.Write("Введено не верное число!!!");
+}
+else
+{
+    Console.WriteLine($"в введенном числе: {value} - {countIndex} знаков");
+
+    if (countIndex < 3)
+    {
+        Console.Write("Мало разрядов числа 3го нет!!!");
+        return;
+    }
+    else
+    {
+        while (countIndex > 3)
+        {
+            value = value / 10;
+            countIndex--;
+        }
+
+    }
+
+    result = value % 10;
+    RightValue = RightValue % 1000;
+    RightValue = RightValue / 100;
+
+    Console.WriteLine($"Третья слева {result}, третья справа {RightValue}");
+
+}
+*/
+
+
+
+//Задача 15: Напишите программу, которая принимает на вход цифру, обозначающую день недели,
+//и проверяет, является ли этот день выходным.
+//6 -> да
+//7 -> да
+//1 -> нет
+
+Console.Write("Введите день недели: ");
+int value = Convert.ToInt32(Console.ReadLine());
+if (value > 7 || value < 1)
+{
+     Console.WriteLine($"В неделе 7 дней а не {value} дней");
+     return;
+}
+if (value == 6 || value == 7) Console.WriteLine("Ура выходной!!!!");
+else  Console.WriteLine("Идем работать");
