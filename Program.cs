@@ -100,7 +100,14 @@ while (count <= N)
 /*
 
 Console.Write("Введите трехзначное число: ");
-int value = Math.Abs(Convert.ToInt32(Console.ReadLine()));  // модуль числа при отрицательных режет минус
+bool check = int.TryParse(Console.ReadLine(), out int value);
+if (check == false)
+    {
+        Console.WriteLine($"Вы ввели что-то не хорошее, можно только цифры 0-9 И минус");
+        return;
+    }
+
+int value = Math.Abs(value);  // модуль числа при отрицательных режет минус
 if (value > 999 || value < 99)
 {
     Console.Write("Введено не верное число!!!");
@@ -117,11 +124,19 @@ else
 //78 -> третьей цифры нет
 //3267900 -> 6
 //ДОП: цифра третья может быть как с левой стороны, так и с правой
+
 /*
 int result = 0;
 int countIndex = 1;
 Console.Write("Введите число: ");
-int value = Math.Abs(Convert.ToInt32(Console.ReadLine()));
+bool check = int.TryParse(Console.ReadLine(), out int value);
+if (check == false)
+    {
+        Console.WriteLine($"Вы ввели что-то не хорошее, можно только цифры 0-9 И минус");
+        return;
+    }
+
+value = Math.Abs(value);
 int RightValue = value; // для справа
 int count = value;
 
@@ -160,9 +175,8 @@ else
     Console.WriteLine($"Третья слева {result}, третья справа {RightValue}");
 
 }
+
 */
-
-
 
 //Задача 15: Напишите программу, которая принимает на вход цифру, обозначающую день недели,
 //и проверяет, является ли этот день выходным.
@@ -171,11 +185,19 @@ else
 //1 -> нет
 
 Console.Write("Введите день недели: ");
-int value = Convert.ToInt32(Console.ReadLine());
-if (value > 7 || value < 1)
+    bool check = int.TryParse(Console.ReadLine(), out int value);
+    if (check == false)
+    {
+        Console.WriteLine($"Вы ввели что-то не хорошее, можно только цифры 1-7");
+        return;
+    }
+else
 {
-     Console.WriteLine($"В неделе 7 дней а не {value} дней");
-     return;
+    if (value > 7 || value < 1)
+    {
+        Console.WriteLine($"В неделе 7 дней а не {value} дней");
+        return;
+    }
+    if (value == 6 || value == 7) Console.WriteLine("Ура выходной!!!!");
+    else Console.WriteLine("Идем работать");
 }
-if (value == 6 || value == 7) Console.WriteLine("Ура выходной!!!!");
-else  Console.WriteLine("Идем работать");
