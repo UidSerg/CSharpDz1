@@ -72,7 +72,6 @@ if (a % 2 == 0) Console.WriteLine("Число " + a + " - четное");
 else Console.WriteLine("Число " + a + " - нечетное");
 
 */
-
 //Задача 8: Напишите программу, которая на вход принимает число (N), а на выходе показывает все чётные числа от 1 до N.
 //5 -> 2, 4
 //8 -> 2, 4, 6, 8
@@ -88,11 +87,9 @@ while (count <= N)
 }
 
 */
-
 // 2й семинар
 //Напишите программу, которая принимает на вход трёхзначное число и на выходе
 //показывает вторую цифру этого числа.
-
 //456 -> 5
 //782 -> 8
 //918 -> 1
@@ -177,13 +174,12 @@ else
 }
 
 */
-
 //Задача 15: Напишите программу, которая принимает на вход цифру, обозначающую день недели,
 //и проверяет, является ли этот день выходным.
 //6 -> да
 //7 -> да
 //1 -> нет
-
+/*
 Console.Write("Введите день недели: ");
     bool check = int.TryParse(Console.ReadLine(), out int value);
     if (check == false)
@@ -201,3 +197,94 @@ else
     if (value == 6 || value == 7) Console.WriteLine("Ура выходной!!!!");
     else Console.WriteLine("Идем работать");
 }
+*/
+//Домашнее задание 3й семинар
+//Задача 19
+//Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.
+//14212 -> нет
+//12821 -> да
+//23432 -> да
+/*
+bool krai1 = false;
+bool krai2 = false;
+Console.Write("Введите пятизначное число: ");
+
+if (value > 9999 && value < 100000)
+{
+    int copyValue = value; 
+    if (value / 10000 == value % 10)
+    {
+        krai1 = true;
+        value = value % 10000; //12321>2321
+        value = value / 10; //232
+        if (value / 100 == value % 10)
+        {
+            krai2 = true;
+        }
+        else
+        {
+            krai2 = false;
+        }
+    }
+    else
+    {
+        krai1 = false;
+    }
+    if (krai1 == krai2 && krai2 == true)
+    {
+        Console.WriteLine($"число {copyValue} палиндром");
+    }
+    else
+    {
+        Console.WriteLine($"число {copyValue} не является палиндромом");
+    }
+}
+else
+{
+    Console.WriteLine($"Вы ввели не 5-ти значное число ");
+}
+*/
+//Задача 21
+//Напишите программу, которая принимает на вход координаты двух точек 
+//и находит расстояние между ними в 3D пространстве.
+//A (3,6,8); B (2,1,-7), -> 15.84
+//A (7,-5, 0); B (1,-1,9) -> 11.53
+/*
+// Точка A(x1;y1;z1)
+Console.Write("Введите координату точки A по оси Х: ");
+int x1 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите координату точки  A по оси Y: ");
+int y1 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите координату точки  A по оси Z: ");
+int z1 = Convert.ToInt32(Console.ReadLine());
+//Точка B(x2;y2;z2)
+Console.Write("Введите координату точки B по оси Х: ");
+int x2 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите координату точки B по оси Y: ");
+int y2 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите координату точки B по оси Z: ");
+int z2 = Convert.ToInt32(Console.ReadLine());
+
+var result = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1,2) + Math.Pow(z2 - z1,2));
+Console.WriteLine(Math.Round(result,2));
+*/
+
+//Задача 23
+//Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
+//3 -> 1, 8, 27
+//5 -> 1, 8, 27, 64, 125
+
+Console.Write("Введите N: ");
+bool check = int.TryParse(Console.ReadLine(), out int N);
+if (check == false)
+{
+    Console.WriteLine($"Вы ввели что-то не хорошее, можно только цифры 1-9");
+    return;
+}
+N = Convert.ToInt32(N);
+for (int i = 1; i <= N; i++)
+{
+Console.Write(Math.Pow(i,3)+ "\n");    
+}
+
+
