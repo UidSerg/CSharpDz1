@@ -273,7 +273,7 @@ Console.WriteLine(Math.Round(result,2));
 //Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
 //3 -> 1, 8, 27
 //5 -> 1, 8, 27, 64, 125
-
+/*
 Console.Write("Введите N: ");
 bool check = int.TryParse(Console.ReadLine(), out int N);
 if (check == false)
@@ -286,5 +286,118 @@ for (int i = 1; i <= N; i++)
 {
 Console.Write(Math.Pow(i,3)+ "\n");    
 }
+*/
 
+/*Доп. задание №1:
+Представим банк, в котором алгоритм начисления процента по вкладу зависит от суммы вклада.
+ На вход будет подаваться число (сумма вклада). 
+ При значении меньше 100, будет начислено 5 %, если значение находится в диапазоне от ста до двухсот — 7 %, 
+ если больше — 10 %.
+ Отработав, программа должна вывести общую сумму с начисленными процентами.
+ */
+/*
+Console.Write("Введите сумму вклада: ");
+bool check = double.TryParse(Console.ReadLine(), out double vklad);
+if (check == false)
+{
+    Console.WriteLine($"Вы ввели что-то не понятное, можно только цифры 1-9");
+    return;
+}
+vklad = Convert.ToInt32(vklad);
+if (vklad < 0)
+{
+    Console.WriteLine($"Вклад не может быть отрицательным!");
+    return;
+}
+//< 100ye - 5% || 7%|| 10% - > 200ye
+double result =0;
+if (vklad <= 200 &&  vklad >= 100)
+{
+    result = Math.Round((vklad+vklad*0.07),2);
+    Console.WriteLine($"Ваш Вклад {vklad} увеличится на 7% и составит:{result} y.e");
+}
+else if (vklad < 100)
+{
+    result = Math.Round((vklad+vklad*0.05), 2);
+    Console.WriteLine($"Ваш Вклад {vklad} увеличится на 5% и составит:{result} y.e ");
+}
+else if (vklad > 200)
+{
+    result = Math.Round((vklad+vklad*0.1), 2);
+    Console.WriteLine($"Ваш Вклад {vklad} увеличится на 10% и составит: {result} y.e ");
+}
+
+*/
+/*
+Доп. задание №2:
+Назовем число интересным,
+если в нем разность максимальной и минимальной цифры равняется средней по РАСПОЛОЖЕНИЮ цифре. 
+Напишите программу, которая определяет интересное число или нет.
+Если число интересное, следует вывести – «Число интересное» иначе «Число неинтересное».
+-> 954 - число интересное, средняя цифра - 5, разница: 9 - 4 = 5.
+Средняя цифра - цифра(962-6, 23456 - средняя 4)
+*/
+
+Console.Write("Введите сумму число: ");
+bool check = int.TryParse(Console.ReadLine(), out int value);
+if (check == false)
+{
+    Console.WriteLine($"Вы ввели что-то не понятное, можно только цифры 1-9");
+    return;
+}
+value = Math.Abs(Convert.ToInt32(value)); // уберем минус
+int i = 1;
+int valueCount = value;
+while (valueCount / 10 > 0)
+{
+    valueCount = valueCount / 10;
+    i++;
+}
+
+Console.WriteLine($" в числе {i}  цифр");
+if (i % 2 == 0)
+{
+    Console.WriteLine($" в число {value} четное число разрядов в нем нет средней будем считать его НЕИНТЕРЕСНЫМ");
+    return;
+}
+
+int[] array = new int[i];
+
+int valueArray = value;
+for (int j = 0; j < i; j++)
+{
+    array[j] = valueArray % 10;
+    valueArray = valueArray / 10;
+}
+// 12345-> {5,4,3,1,0}
+
+int max = int.MinValue; // вычисляем макс
+for (int q = 0; q < array.Length; q++)
+{
+    if (array[q] > max)
+    {
+        max = array[q];
+    }
+}
+
+int min = int.MaxValue; // вычисляем мин
+for (int q = 0; q < array.Length; q++)
+{
+    if (array[q] < min)
+    {
+        min = array[q];
+    }
+}
+
+int razn = max - min;
+int arrayi = i / 2; // array.Lenght/2
+
+if (razn == array[arrayi])
+{
+    Console.WriteLine($" в число {value} интересное");
+}
+else
+{
+    Console.WriteLine($" в число {value} НЕ интересное");
+}
 
