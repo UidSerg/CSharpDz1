@@ -337,7 +337,7 @@ else if (vklad > 200)
 -> 954 - число интересное, средняя цифра - 5, разница: 9 - 4 = 5.
 Средняя цифра - цифра(962-6, 23456 - средняя 4)
 */
-
+/*
 Console.Write("Введите сумму число: ");
 bool check = int.TryParse(Console.ReadLine(), out int value);
 if (check == false)
@@ -361,7 +361,7 @@ if (i % 2 == 0)
     return;
 }
 
-int[] array = new int[i];
+int[] array = new int[i]; // сделаем массив i длины
 
 int valueArray = value;
 for (int j = 0; j < i; j++)
@@ -369,7 +369,7 @@ for (int j = 0; j < i; j++)
     array[j] = valueArray % 10;
     valueArray = valueArray / 10;
 }
-// 12345-> {5,4,3,1,0}
+// 12345-> {5,4,3,1,0} наоброт в принципе же без разницы
 
 int max = int.MinValue; // вычисляем макс
 for (int q = 0; q < array.Length; q++)
@@ -400,4 +400,52 @@ else
 {
     Console.WriteLine($" в число {value} НЕ интересное");
 }
+*/
+
+/*
+Задача 25: Напишите цикл, который принимает на вход два числа (A и B) и возводит число A в натуральную степень B.
+3, 5 -> 243 (3⁵)
+2, 4 -> 16
+*/
+
+
+Console.Write("Введите число А: ");
+bool check = int.TryParse(Console.ReadLine(), out int valueA);
+if (check == false)
+{
+    Console.WriteLine($"Вы ввели что-то не понятное, можно только цифры 1-9");
+    return;
+}
+Console.Write("Введите число В: ");
+bool check2 = int.TryParse(Console.ReadLine(), out int valueB);
+if (check2 == false)
+{
+    Console.WriteLine($"Вы ввели что-то не понятное, можно только цифры 1-9");
+    return;
+}
+
+int GetMnog(int A)
+{
+    int mnog = 1;
+    for (int i = 1; i <= valueB; i++)
+    {
+        mnog *= valueA;
+    }
+    return mnog;
+}
+
+Console.WriteLine($"Число {valueA} в степени {valueB} = {GetMnog(valueB)}"); 
+
+
+/*
+Задача 27: Напишите программу, которая принимает на вход число и выдаёт сумму цифр в числе.
+452 -> 11
+82 -> 10
+9012 -> 12
+*/
+/*
+Задача 29: Напишите программу, которая задаёт массив из 8 элементов и выводит их на экран.
+1, 2, 5, 7, 19 -> [1, 2, 5, 7, 19]
+6, 1, 33 -> [6, 1, 33]
+*/
 
