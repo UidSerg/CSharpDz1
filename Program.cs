@@ -442,7 +442,7 @@ Console.WriteLine($"Число {valueA} в степени {valueB} = {GetMnog(va
 452 -> 11
 82 -> 10
 9012 -> 12
-*/
+
 Console.Write("Введите число А: ");
 bool check = int.TryParse(Console.ReadLine(), out int value);
 if (check == false)
@@ -463,9 +463,27 @@ int GetSumElem(int element)
 
 }
 Console.WriteLine($"сумма элементов {value}  = {GetSumElem(value)}"); 
+*/
+
 /*
 Задача 29: Напишите программу, которая задаёт массив из 8 элементов и выводит их на экран.
 1, 2, 5, 7, 19 -> [1, 2, 5, 7, 19]
 6, 1, 33 -> [6, 1, 33]
 */
 
+int[] GetArray(int size)
+{
+    int[] array = new int[size];
+    size = array.Length;
+    for (int i = 0; i < size; i++)
+    {
+    
+     array[i] = new Random().Next(0,100); 
+        
+    }
+    return array;
+}
+
+int[] resultArray = GetArray(8);
+
+Console.WriteLine($"Массив: [{String.Join(";",resultArray)}]");
