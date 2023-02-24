@@ -407,7 +407,7 @@ else
 3, 5 -> 243 (3⁵)
 2, 4 -> 16
 */
-
+/*
 
 Console.Write("Введите число А: ");
 bool check = int.TryParse(Console.ReadLine(), out int valueA);
@@ -435,7 +435,7 @@ int GetMnog(int A)
 }
 
 Console.WriteLine($"Число {valueA} в степени {valueB} = {GetMnog(valueB)}"); 
-
+*/
 
 /*
 Задача 27: Напишите программу, которая принимает на вход число и выдаёт сумму цифр в числе.
@@ -443,6 +443,26 @@ Console.WriteLine($"Число {valueA} в степени {valueB} = {GetMnog(va
 82 -> 10
 9012 -> 12
 */
+Console.Write("Введите число А: ");
+bool check = int.TryParse(Console.ReadLine(), out int value);
+if (check == false)
+{
+    Console.WriteLine($"Вы ввели что-то не понятное, можно только цифры 1-9");
+    return;
+}
+
+int GetSumElem(int element)
+{
+    int sum = 0;
+    while (element > 0)
+    {
+        sum = sum + element % 10;
+        element = element / 10; 
+    }
+    return sum;
+
+}
+Console.WriteLine($"сумма элементов {value}  = {GetSumElem(value)}"); 
 /*
 Задача 29: Напишите программу, которая задаёт массив из 8 элементов и выводит их на экран.
 1, 2, 5, 7, 19 -> [1, 2, 5, 7, 19]
