@@ -470,7 +470,7 @@ Console.WriteLine($"сумма элементов {value}  = {GetSumElem(value)}
 1, 2, 5, 7, 19 -> [1, 2, 5, 7, 19]
 6, 1, 33 -> [6, 1, 33]
 */
-
+/*
 int[] GetArray(int size)
 {
     int[] array = new int[size];
@@ -487,3 +487,102 @@ int[] GetArray(int size)
 int[] resultArray = GetArray(8);
 
 Console.WriteLine($"Массив: [{String.Join(";",resultArray)}]");
+*/
+/*
+Семинар 5 Функции и одномерные массивы
+Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами. 
+Напишите программу, которая покажет количество чётных чисел в массиве.
+[345, 897, 568, 234] -> 2
+*/
+/*
+Console.Write("Введите длину массива: ");
+bool check = int.TryParse(Console.ReadLine(), out int size);
+if (check == false)
+{
+    Console.WriteLine($"Вы ввели что-то не понятное, можно только цифры 0-9");
+    return;
+}
+if (size < 2)
+{
+    Console.WriteLine($"Слишком короткий массив, Нужно хотябы 2 элемента ");
+    return;
+}
+
+int[] GetArray(int size)
+{
+    int[] array = new int[size];
+    size = array.Length;
+    for (int i = 0; i < size; i++)
+    {
+
+        array[i] = new Random().Next(100, 1000);
+
+    }
+    return array;
+}
+int[] resultArray = GetArray(size);
+int sum = 0;
+for (int i = 0; i < size; i++)
+{
+    if (resultArray[i] % 2 == 0) sum++;
+}
+
+Console.WriteLine($"в массиве: [{String.Join(";", resultArray)}] -{sum} четных чисел");
+*/
+
+/*
+Задача 36: Задайте одномерный массив, заполненный случайными числами. 
+Найдите сумму элементов, стоящих на нечётных позициях.
+[3, 7, 23, 12] -> 19
+[-4, -6, 89, 6] -> 0
+*/
+/*
+Console.Write("Введите длину массива: ");
+bool check = int.TryParse(Console.ReadLine(), out int size);
+if (check == false)
+{
+    Console.WriteLine($"Вы ввели что-то не понятное, можно только цифры 0-9");
+    return;
+}
+if (size < 2)
+{
+    Console.WriteLine($"Слишком короткий массив, Нужно хотябы 2 элемента ");
+    return;
+}
+
+int[] GetArray(int size)
+{
+    int[] array = new int[size];
+    size = array.Length;
+    for (int i = 0; i < size; i++)
+    {
+
+        array[i] = new Random().Next(-100, 100);
+
+    }
+    return array;
+}
+int[] resultArray = GetArray(size);
+int sum = 0;
+for (int i = 1; i < size; i = i+2) //пройдем понечетным позициям циклом
+{
+   sum += resultArray[i];
+}
+
+Console.WriteLine($"в массиве: [{String.Join(";", resultArray)}] сумма элементов на нечетных позициях = {sum}");
+*/
+/*
+Задача 38: Задайте массив вещественных чисел.
+Найдите разницу между максимальным и минимальным элементов массива.
+[3 7 22 2 78] -> 76
+Используйте NextDouble().
+*/
+
+
+/*
+Доп. задачка:
+Задача 37: Найдите произведение пар чисел в одномерном массиве. 
+Парой считаем первый и последний элемент, второй и предпоследний и т.д. 
+Результат запишите в новом массиве.
+[1 2 3 4 5] -> 5 8 3
+[6 7 3 6] -> 36 21*/
