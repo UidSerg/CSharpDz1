@@ -724,38 +724,44 @@ k1*x-k2*x = b2-b1
 x= (b2-b1)/(k1-k2)
 */
 Console.Write("введите угловой коэффициент для первой прямой: ");
-bool check = int.TryParse(Console.ReadLine(), out int k1);
+bool check = double.TryParse(Console.ReadLine(), out double k1);
 if (check == false)
 {
     Console.WriteLine($"Вы ввели что-то не понятное, можно только цифры 0-9");
     return;
 }
 Console.Write("введите угловой коэффициент для второй прямой: ");
-check = int.TryParse(Console.ReadLine(), out int k2);
+check = double.TryParse(Console.ReadLine(), out double k2);
 if (check == false)
 {
     Console.WriteLine($"Вы ввели что-то не понятное, можно только цифры 0-9");
     return;
 }
 Console.Write("введите смещение первой прямой: ");
-check = int.TryParse(Console.ReadLine(), out int b1);
+check = double.TryParse(Console.ReadLine(), out double b1);
 if (check == false)
 {
     Console.WriteLine($"Вы ввели что-то не понятное, можно только цифры 0-9");
     return;
 }
 Console.Write("введите смещение второй прямой: ");
-check = int.TryParse(Console.ReadLine(), out int b2);
+check = double.TryParse(Console.ReadLine(), out double b2);
 if (check == false)
 {
     Console.WriteLine($"Вы ввели что-то не понятное, можно только цифры 0-9");
     return;
 }
+if (k1 == k2)
+{
+    Console.WriteLine($"прямые не пересекаются");
+}
 
-double x = (b2 - b1) / (k1 - k2);
-var y = k1 * x + b1;
-Console.WriteLine($" прямая y = {k1} * x + {b1} пересекается с  прямой y = {k2} * x + {b2} в точке с координатами ({x},{y})");
-
+else
+{
+    double x = (b2 - b1) / (k1 - k2);
+    double y = k1 * x + b1;
+    Console.WriteLine($" прямая y = {k1} * x + {b1} пересекается с  прямой y = {k2} * x + {b2} в точке с координатами ({x},{y})");
+}
 
 /*
 Задача 42 (необязательно): Напишите программу, которая будет преобразовывать десятичное число в двоичное.
