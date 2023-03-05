@@ -723,6 +723,7 @@ k1 * x + b1 = k2 * x + b2
 k1*x-k2*x = b2-b1
 x= (b2-b1)/(k1-k2)
 */
+/*
 Console.Write("введите угловой коэффициент для первой прямой: ");
 bool check = double.TryParse(Console.ReadLine(), out double k1);
 if (check == false)
@@ -762,10 +763,129 @@ else
     double y = k1 * x + b1;
     Console.WriteLine($" прямая y = {k1} * x + {b1} пересекается с  прямой y = {k2} * x + {b2} в точке с координатами ({x},{y})");
 }
-
+*/
 /*
 Задача 42 (необязательно): Напишите программу, которая будет преобразовывать десятичное число в двоичное.
 45 -> 101101
 3 -> 11
 2 -> 10
+*/
+/*
+int x = 2;
+int y=0;
+string itog="";
+while (x/2 >= 1)
+{
+    y=x/2;
+    itog=itog+Convert.ToString(x-y*2);
+    x=x/2;
+    if(x==1)
+    {
+        itog=itog+1;
+    }
+}
+
+Console.WriteLine($"{itog}");
+//не доделал потом может быть 
+*/
+/*
+////////////////////////////////////Урок 7. Двумерные массивы
+Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
+m = 3, n = 4.
+0,5 7 -2 -0,2
+1 -3,3 8 -9,9
+8 7,8 -7,1 9
+*/
+/*
+
+double[,] GetMatrix(int rows, int cols)
+{
+    double[,] matrix = new double[rows, cols];
+    int[] random = { -100, 100 }; // массив для случайного умножения
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            matrix[i, j] = (new Random().NextDouble()) * (random[new Random().Next(2)]);
+        }
+    }
+    return matrix;
+}
+void PrintMatrix(double[,] matr)
+{
+    for (int i = 0; i < matr.GetLength(0); i++)
+    {
+        for (int j = 0; j < matr.GetLength(1); j++)
+        {
+            Console.Write(Math.Round(matr[i, j], 1) + "\t"); // выводим не более 1 знака после запятой
+        }
+        Console.WriteLine();
+    }
+}
+int m = 3; //не сказано что ввести с клавиатуры просто объявим по условию задачи
+int n = 4;
+double[,] resultMatrix = GetMatrix(m, n);
+PrintMatrix(resultMatrix);
+*/
+/*
+Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве,
+и возвращает значение этого элемента или же указание, что такого элемента нет.
+Например, задан массив:
+1 4 7 2
+5 9 2 3
+8 4 2 4
+1(строчка) 7 (столбец) -> такого числа в массиве нет
+*/
+int[,] GetMatrix(int rows, int cols, int minValue, int maxValue)
+{
+    int[,] matrix = new int[rows, cols];
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            matrix[i, j] = new Random().Next(minValue, maxValue + 1);
+        }
+    }
+    return matrix;
+}
+void PrintMatrix(int[,] matr)
+{
+    for (int i = 0; i < matr.GetLength(0); i++)
+    {
+        for (int m = 0; m < matr.GetLength(1); m++)
+        {
+            Console.Write(matr[i, m] + "\t");
+        }
+        Console.WriteLine();
+    }
+}
+
+int[,] resultMatrix = GetMatrix(10, 10, 0, 10);
+
+Console.Write("Введите через запятую позицию элемента(x,y): ");
+string[] posishinArray = Console.ReadLine().Split(",");
+if (posishinArray.Length != 2)
+{
+    Console.Write("Не верный формат координат");
+    return;
+}
+int posishinRows = Convert.ToInt32(posishinArray[0]);
+int posishinCols = Convert.ToInt32(posishinArray[1]);
+if(posishinRows > resultMatrix.GetLength(0) || posishinRows < 1 || posishinCols > resultMatrix.GetLength(1) || posishinCols < 1)
+{
+    Console.Write("указаны неверные координаты элемента");
+    return;    
+}
+int element = resultMatrix[posishinRows - 1, posishinCols - 1];
+Console.WriteLine("В массиве: ");
+PrintMatrix(resultMatrix);
+Console.WriteLine($"элемент с указанной вами позицией ({String.Join(",", posishinArray)}) = {element}");
+
+/*
+Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+Например, задан массив:
+1 4 7 2
+5 9 2 3
+8 4 2 4
+Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 */
