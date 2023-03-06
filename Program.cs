@@ -836,10 +836,12 @@ PrintMatrix(resultMatrix);
 8 4 2 4
 1(строчка) 7 (столбец) -> такого числа в массиве нет
 */
+/*
 int[,] GetMatrix(int rows, int cols, int minValue, int maxValue)
 {
     int[,] matrix = new int[rows, cols];
     for (int i = 0; i < matrix.GetLength(0); i++)
+
     {
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
@@ -866,7 +868,7 @@ Console.Write("Введите через запятую позицию элем�
 string[] posishinArray = Console.ReadLine().Split(",");
 if (posishinArray.Length != 2)
 {
-    Console.Write("Не верный формат координат");
+    Console.Write("Неверный формат координат");
     return;
 }
 int posishinRows = Convert.ToInt32(posishinArray[0]);
@@ -880,7 +882,7 @@ int element = resultMatrix[posishinRows - 1, posishinCols - 1];
 Console.WriteLine("В массиве: ");
 PrintMatrix(resultMatrix);
 Console.WriteLine($"элемент с указанной вами позицией ({String.Join(",", posishinArray)}) = {element}");
-
+*/
 /*
 Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
 Например, задан массив:
@@ -889,3 +891,54 @@ Console.WriteLine($"элемент с указанной вами позицие
 8 4 2 4
 Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 */
+int[,] GetMatrix(int rows, int cols, int minValue, int maxValue)
+{
+    int[,] matrix = new int[rows, cols];
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            matrix[i, j] = new Random().Next(minValue, maxValue + 1);
+        }
+    }
+    return matrix;
+}
+void PrintMatrix(int[,] matr)
+{
+    for (int i = 0; i < matr.GetLength(0); i++)
+    {
+        for (int m = 0; m < matr.GetLength(1); m++)
+        {
+            Console.Write(matr[i, m] + "\t");
+        }
+        Console.WriteLine();
+    }
+}
+
+int[,] resultMatrix = GetMatrix(4, 4, 0, 9);
+PrintMatrix(resultMatrix);
+double[] answer = new double[resultMatrix.GetLength(1)];
+for (int j = 0; j < resultMatrix.GetLength(1); j++) //перебор столбцов в матрице
+{
+    int rows = 0;
+    double sum = 0;
+    while (rows < resultMatrix.GetLength(0))
+    {
+        sum = sum + resultMatrix[rows, j];
+        rows++;
+    }
+    answer[j] = Math.Round(sum / rows, 2);
+}
+Console.WriteLine($"Среднее арифметическое каждого столбца: {String.Join("; ", (answer))}");
+/* Доп задача: сумма элементов главной диагонали*/
+if (resultMatrix.GetLength(0) != resultMatrix.GetLength(1))
+{
+    Console.WriteLine($"Невозможно выявить главную диагональ!!!");
+    return;
+}
+int sumDiagonali = 0;
+for (int i = 0; i < resultMatrix.GetLength(0); i++)
+{
+    sumDiagonali = sumDiagonali + resultMatrix[i, i];
+}
+Console.WriteLine($"Cумма элементов главной диагонали: {sumDiagonali}");
