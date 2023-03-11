@@ -122,8 +122,8 @@ Console.WriteLine($"Сторока с наименьшей суммой элем
 15 18
 */
 /*
-int[,] matrix1 = GetMatrix(2, 2, 0, 5);
-int[,] matrix2 = GetMatrix(2, 2, 0, 5);
+int[,] matrix1 = GetMatrix(2, 4, 0, 5); //зададим матрицы
+int[,] matrix2 = GetMatrix(4, 2, 0, 5);
 PrintMatrix(matrix1);
 Console.WriteLine("*");
 PrintMatrix(matrix2);
@@ -133,13 +133,12 @@ if (matrix1.GetLength(1) != matrix2.GetLength(0))
     Console.WriteLine("Невозможно");
     return;
 }
-//по заданию матрицы обе матрицы 2х2 результатирующая матрица тоже будет 2х2
-int [,] resulMatrix = GetMatrix(2, 2, 0, 0);
-for (int i = 0; i < resulMatrix.GetLength(0); i++)
+int [,] resulMatrix = GetMatrix(matrix1.GetLength(0), matrix2.GetLength(1), 0, 0);
+for (int i = 0; i < matrix1.GetLength(0); i++)
 {
-    for (int j = 0; j < resulMatrix.GetLength(1); j++)
+    for (int j = 0; j < matrix2.GetLength(1); j++)
     {
-        for (int k = 0; k < 2; k++)
+        for (int k = 0; k < matrix2.GetLength(0); k++)
         {
             resulMatrix[i,j] += matrix1[i,k]*matrix2[k,j]; //сумма (строку матрицы 1 * на столбец матрицы 2)
         }
@@ -158,7 +157,7 @@ PrintMatrix(resulMatrix);
 27(0,0,1) 90(0,1,1)
 26(1,0,1) 55(1,1,1)
 */
-
+/*
 int [,,] threeDMass=new int[2,2,2];
 for (int i = 0; i < threeDMass.GetLength(0); i++)
 {
@@ -172,3 +171,82 @@ for (int i = 0; i < threeDMass.GetLength(0); i++)
         Console.WriteLine();
     } 
 }
+*/
+/*
+////////////////////////////////////////Урок 9. Рекурсия////////////////////////////////
+Задача 64: Задайте значение N.
+Напишите программу,которая выведет все натуральные числа в промежутке от N до 1.
+Выполнить с помощью рекурсии.
+N = 5 -> "5, 4, 3, 2, 1"
+N = 8 -> "8, 7, 6, 5, 4, 3, 2, 1"
+*/
+/*
+Console.Write("Введите число N: ");
+bool check = int.TryParse(Console.ReadLine(), out int valueN);
+if (check == false)
+{
+Console.WriteLine($"введен не число");
+return;
+}
+/// <summary>
+/// Печатаем все натуральные числа в промежутке от N до 1.
+/// </summary>
+/// <param name="n">Число задающее промежуток</param>
+/// <returns></returns>
+string GetValue(int n)
+{
+    if (n == 1) return n.ToString();
+    return (n + "," + GetValue(n - 1));
+}
+Console.WriteLine(GetValue(valueN));
+*/
+/*
+Задача 66: Задайте значения M и N.
+Напишите программу, которая найдёт сумму натуральных элементов в промежутке от M до N.
+M = 1; N = 15 -> 120
+M = 4; N = 8. -> 30
+*/
+/*
+Console.Write("Введите число M: ");
+int M = Math.Abs(Convert.ToInt32(Console.ReadLine())); //число натуральное убираем минус если вдруг введут
+Console.Write("Введите число N: ");
+int N = Math.Abs(Convert.ToInt32(Console.ReadLine()));
+if (M>=N)
+{
+    Console.WriteLine("НЕверно задан промежуток натуральных чисел от M до N");
+    return;
+}
+/// <summary>
+/// Считаем сумму натуральных чисел от M до N
+/// </summary>
+/// <param name="start"> M = start</param>
+/// <param name="end"> N = end</param>
+/// <returns></returns>
+int PrintSum(int start, int end)
+{
+    // Базовый
+    if (start == end) return end;
+    // Рекурсивный
+    return (start + PrintSum(start+1, end));
+}
+
+Console.WriteLine(PrintSum(M, N));
+*/
+/*
+Задача 68: Напишите программу вычисления функции Аккермана с помощью рекурсии.
+Даны два неотрицательных числа m и n.
+m = 2, n = 3 -> A(m,n) = 9
+m = 3, n = 2 -> A(m,n) = 29
+*/
+Console.Write("Введите число M: ");
+int M = Math.Abs(Convert.ToInt32(Console.ReadLine())); //число натуральное убираем минус если вдруг введут
+Console.Write("Введите число N: ");
+int N = Math.Abs(Convert.ToInt32(Console.ReadLine()));
+
+int GetAckerman(int m, int n)
+{
+    if (m == 0) return n + 1;
+    else if (m != 0 && n == 0) return GetAckerman(m - 1, 1);
+    else return GetAckerman(m - 1, GetAckerman(m, n - 1));
+}
+Console.WriteLine(GetAckerman(M, N));
