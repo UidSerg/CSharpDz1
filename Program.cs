@@ -173,6 +173,53 @@ for (int i = 0; i < threeDMass.GetLength(0); i++)
 }
 */
 /*
+ДОПОЛНИТЕЛЬНАЯ ЗАДАЧКА
+Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
+Например, на выходе получается вот такой массив:
+01 02 03 04
+12 13 14 05
+11 16 15 06
+10 09 08 07
+*/
+int [,] newMatrix = GetMatrix(6,6,0,0); //генерируем матрицу нолей любого размера 
+int rows = newMatrix.GetLength(0);
+int cols = newMatrix.GetLength(1);
+int count = 1;
+
+for (int k = 0;k < rows/2; k++)
+{
+int i = 0;
+while ( i+k < rows-k)
+{
+    newMatrix[0+k,i+k] = count;
+    i++;
+    count++;
+}
+int j = 1;
+while ( j+k < cols-k)
+{
+    newMatrix[j+k,cols-1-k] = count;
+    j++;
+    count++;
+}
+
+while (i > 1)
+{
+    newMatrix[rows-1-k,i-2+k] = count;
+    i--;
+    count++;
+}
+
+while ( j >2)
+{
+    newMatrix[j-2+k,0+k] = count;
+    j--;
+    count++;
+}
+}
+PrintMatrix(newMatrix);
+
+/*
 ////////////////////////////////////////Урок 9. Рекурсия////////////////////////////////
 Задача 64: Задайте значение N.
 Напишите программу,которая выведет все натуральные числа в промежутке от N до 1.
@@ -238,6 +285,7 @@ Console.WriteLine(PrintSum(M, N));
 m = 2, n = 3 -> A(m,n) = 9
 m = 3, n = 2 -> A(m,n) = 29
 */
+/*
 Console.Write("Введите число M: ");
 int M = Math.Abs(Convert.ToInt32(Console.ReadLine())); //число натуральное убираем минус если вдруг введут
 Console.Write("Введите число N: ");
@@ -250,3 +298,4 @@ int GetAckerman(int m, int n)
     else return GetAckerman(m - 1, GetAckerman(m, n - 1));
 }
 Console.WriteLine(GetAckerman(M, N));
+*/
